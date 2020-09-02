@@ -1,0 +1,98 @@
+version: "3"
+
+services:
+  api:
+    container_name: api
+    image: product-categories-api
+    build:
+      context: ./
+      dockerfile: ./packages/api/Dockerfile.dev
+    ports:
+      - 4000:4000
+      - 14000:9229
+    environment:
+      PORT: 4000
+      API_NAME: API
+      NODE_ENV: development
+      API_AUTH: http://api-auth:4001
+      API_CATALOG: http://api-catalog:4010
+      LOG_LEVEL: error
+      FALLBACK_LANGUAGE: en
+      WAIT_HOSTS: api-auth:4001, api-catalog:4010
+    volumes:
+      - ./locales:/usr/src/app/locales
+      - ./packages/api:/usr/src/app/packages/api
+      - ./node_modules:/usr/src/app/node_modules
+    networks:
+      - product-categories-network
+    restart: unless-stopped
+
+  api-auth:
+    container_name: api-auth
+    image: product-categories-api-auth
+    build:
+      context: ./
+      dockerfile: ./packages/api-auth/Dockerfile.dev
+    ports:
+      - 4001:4001
+      - 14001:9229
+    environment:
+      PORT: 4001
+      API_NAME: API-AUTH
+      NODE_ENV: development
+      LOG_LEVEL: error
+      FALLBACK_LANGUAGE: en
+      MONGODB_URL: mongodb://db:27017/product-categories
+      WAIT_HOSTS: db:27017
+    volumes:
+      - ./locales:/usr/src/app/locales
+      - ./packages/api-auth:/usr/src/app/packages/api-auth
+      - ./node_modules:/usr/src/app/node_modules
+    depends_on:
+      - db
+    networks:
+      - product-categories-network
+    restart: unless-stopped
+
+  api-catalog:
+    container_name: api-catalog
+    image: product-categories-api-catalog
+    build:
+      context: ./
+      dockerfile: ./packages/api-catalog/Dockerfile.dev
+    ports:
+      - 4010:4010
+      - 14010:9229
+    environment:
+      PORT: 4010
+      API_NAME: API-CATALOG
+      NODE_ENV: development
+      LOG_LEVEL: error
+      FALLBACK_LANGUAGE: en
+      MONGODB_URL: mongodb://db:27017/product-categories
+      WAIT_HOSTS: db:27017
+    volumes:
+      - ./locales:/usr/src/app/locales
+      - ./packages/api-catalog:/usr/src/app/packages/api-catalog
+      - ./node_modules:/usr/src/app/node_modules
+    depends_on:
+      - db
+    networks:
+      - product-categories-network
+    restart: unless-stopped
+
+  db:
+    container_name: db
+    image: mongo:latest
+    volumes:
+      - ./mongodb-data:/data/db
+      - ./initial-data:/initial-data
+    ports:
+      - 28017:27017
+      - 28018:27018
+    networks:
+      - product-categories-network
+
+networks:
+  product-categories-network:
+    driver: bridge
