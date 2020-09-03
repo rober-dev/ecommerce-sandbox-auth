@@ -21,6 +21,9 @@ services:
       WAIT_HOSTS: api-auth:4001, api-catalog:4010
     volumes:
       - ./locales:/usr/src/app/locales
+      - ./packages/shared:/usr/src/app/packages/shared
+      - ./packages/common:/usr/src/app/packages/common
+      - ./packages/api-common:/usr/src/app/packages/api-common
       - ./packages/api:/usr/src/app/packages/api
       - ./node_modules:/usr/src/app/node_modules
     networks:
@@ -46,6 +49,9 @@ services:
       WAIT_HOSTS: db:27017
     volumes:
       - ./locales:/usr/src/app/locales
+      - ./packages/shared:/usr/src/app/packages/shared
+      - ./packages/common:/usr/src/app/packages/common
+      - ./packages/api-common:/usr/src/app/packages/api-common
       - ./packages/api-auth:/usr/src/app/packages/api-auth
       - ./node_modules:/usr/src/app/node_modules
     depends_on:
@@ -73,6 +79,9 @@ services:
       WAIT_HOSTS: db:27017
     volumes:
       - ./locales:/usr/src/app/locales
+      - ./packages/shared:/usr/src/app/packages/shared
+      - ./packages/common:/usr/src/app/packages/common
+      - ./packages/api-common:/usr/src/app/packages/api-common
       - ./packages/api-catalog:/usr/src/app/packages/api-catalog
       - ./node_modules:/usr/src/app/node_modules
     depends_on:

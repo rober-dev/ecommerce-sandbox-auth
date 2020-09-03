@@ -1,0 +1,30 @@
+{
+  "name": "@minimal-ecommerce-sandbox/api-common",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format:check": "prettier --check \"**/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "test": "NODE_ENV=test jest __tests__",
+    "test:watch": "NODE_ENV=test jest __tests__ --watch",
+    "test:watch:debug": "NODE_ENV=test jest __tests__ --watch --runInBand",
+    "test:coverage": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4 --collect-coverage",
+    "debug": "node --inspect=0.0.0.0:9229 ./src/index.js",
+    "dev": "nodemon -L --watch ./src --watch ./data ./src/index.js",
+    "dev:debug": "nodemon -L --watch ./src --watch ./data --inspect=0.0.0.0:9229 ./src/index.js",
+    "start": "node ./src/index.js --production"
+  },
+  "dependencies": {
+    "@minimal-ecommerce-sandbox/common": "^0.0.0",
+    "@minimal-ecommerce-sandbox/shared": "^0.0.0",
+    "apollo-server-express": "^2.16.1",
+    "bson": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "i18next": "^19.7.0",
+    "i18next-express-middleware": "^2.0.0",
+    "i18next-sync-fs-backend": "^1.1.1",
+    "path": "^0.12.7"
+  }
+}

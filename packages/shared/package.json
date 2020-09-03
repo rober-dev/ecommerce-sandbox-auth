@@ -1,0 +1,22 @@
+{
+  "name": "@minimal-ecommerce-sandbox/shared",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format:check": "prettier --check \"**/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "format": "prettier --write \"**/*.{js,jsx,yml,yaml,json,css,scss,md}\"",
+    "test": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4",
+    "test:watch": "NODE_ENV=test jest __tests__ --watch",
+    "test:watch:debug": "NODE_ENV=test jest __tests__ --watch --runInBand",
+    "test:coverage": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4 --collect-coverage",
+    "debug": "node --inspect=0.0.0.0:9229 ./src/index.js",
+    "dev": "nodemon --legacy-watch --watch ./src --watch ./data ./src/index.js",
+    "dev:debug": "nodemon --legacy-watch --watch ./src --watch ./data --inspect=0.0.0.0:9229 ./src/index.js",
+    "start": "node ./src/index.js --production"
+  },
+  "dependencies": {
+    "graphql-tag": "^2.11.0",
+    "yup": "^0.29.3"
+  }
+}

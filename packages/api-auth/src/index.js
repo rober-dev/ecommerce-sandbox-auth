@@ -3,9 +3,17 @@ const { ApolloServer } = require('apollo-server-express');
 const { buildFederatedSchema } = require('@apollo/federation');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // Get enviroment variables
 require('dotenv').config();
+
+// Custom libs
+const setupLogger = require('@minimal-ecommerce-sandbox/common/src/logger/setup');
+const i18nextSetup = require('@minimal-ecommerce-sandbox/api-common/src/i18n/i18next-setup');
+
+// Logger
+const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
 
 const { PORT, API_NAME, FALLBACK_LANGUAGE, NODE_ENV } = process.env;
 
@@ -48,11 +56,21 @@ const run = async () => {
   const app = express();
   app.use(bodyParser.json());
 
+  // i18next setup
+  const localesPath = path.join(__dirname, '../../../locales');
+  await i18nextSetup(app, localesPath);
+
+  // Healthcheck
+  app.get('/healthcheck', (req, res) => res.json('ok'));
+
+  // Register logger on app init
+  setupLogger(app, __dirname);
+
   apolloServer.applyMiddleware({ app });
 
   // Start server
   app.listen({ port: PORT }, () => {
-    console.info(
+    logger.info(
       `🚀${API_NAME} ready at http://localhost:${PORT}${apolloServer.graphqlPath}`
     );
   });
@@ -64,7 +82,7 @@ const run = async () => {
 try {
   run();
 } catch (e) {
-  console.error(
+  logger.error(
     `Error starting ${API_NAME} on ${NODE_ENV} mode`,
     e.message,
     e.stack
