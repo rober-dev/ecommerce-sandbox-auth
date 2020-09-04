@@ -1,5 +1,5 @@
 {
-  "name": "@minimal-ecommerce-sandbox/api",
+  "name": "@ecommerce-sandbox-auth/api",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -17,9 +17,9 @@
   },
   "dependencies": {
     "@apollo/gateway": "^0.20.0",
-    "@minimal-ecommerce-sandbox/api-common": "^0.0.0",
-    "@minimal-ecommerce-sandbox/common": "^0.0.0",
-    "@minimal-ecommerce-sandbox/shared": "^0.0.0",
+    "@ecommerce-sandbox-auth/api-common": "^0.0.0",
+    "@ecommerce-sandbox-auth/common": "^0.0.0",
+    "@ecommerce-sandbox-auth/shared": "^0.0.0",
     "apollo-engine": "^1.1.2",
     "apollo-server-express": "^2.17.0",
     "body-parser": "^1.19.0",

@@ -1,5 +1,5 @@
 {
-  "name": "@minimal-ecommerce-sandbox/common",
+  "name": "@ecommerce-sandbox-auth/common",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",

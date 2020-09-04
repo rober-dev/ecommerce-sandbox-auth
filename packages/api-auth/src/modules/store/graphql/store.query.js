@@ -1,8 +1,8 @@
 // Vendor libs
-const throwApolloError = require('@minimal-ecommerce-sandbox/api-common/src/helpers/throw-apollo-error');
+const throwApolloError = require('@ecommerce-sandbox-auth/api-common/src/helpers/throw-apollo-error');
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
 
 const getAllStores = async (parent, args, ctx) => {
   try {

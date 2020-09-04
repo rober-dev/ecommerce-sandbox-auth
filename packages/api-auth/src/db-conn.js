@@ -6,7 +6,7 @@ const bluebird = require('bluebird');
 require('dotenv').config();
 
 // Logger
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 // Set mongoose Promise to Bluebird
 mongoose.Promise = bluebird;

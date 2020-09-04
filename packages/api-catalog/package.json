@@ -1,5 +1,5 @@
 {
-  "name": "@minimal-ecommerce-sandbox/api-catalog",
+  "name": "@ecommerce-sandbox-auth/api-catalog",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -16,9 +16,9 @@
     "start": "node ./src/index.js --production"
   },
   "dependencies": {
-    "@minimal-ecommerce-sandbox/api-common": "^0.0.0",
-    "@minimal-ecommerce-sandbox/common": "^0.0.0",
-    "@minimal-ecommerce-sandbox/shared": "^0.0.0",
+    "@ecommerce-sandbox-auth/api-common": "^0.0.0",
+    "@ecommerce-sandbox-auth/common": "^0.0.0",
+    "@ecommerce-sandbox-auth/shared": "^0.0.0",
     "@apollo/federation": "^0.19.0",
     "apollo-server-express": "^2.16.1",
     "bluebird": "^3.7.2",

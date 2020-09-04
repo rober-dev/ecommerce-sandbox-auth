@@ -4,7 +4,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 const bluebird = require('bluebird');
 
 // Custom libs
-const regexp = require('@minimal-ecommerce-sandbox/shared/src/common/regexp');
+const regexp = require('@ecommerce-sandbox-auth/shared/src/common/regexp');
 
 // Mongoose promise settings
 mongoose.Promise = bluebird;
@@ -12,6 +12,11 @@ mongoose.Promise = bluebird;
 // Schema
 const UserSchema = new mongoose.Schema(
   {
+    organizationId: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Organization'
+    },
     storeId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -36,9 +41,8 @@ const UserSchema = new mongoose.Schema(
       required: true
     },
     lastLogin: {
-      type: String,
-      required: false,
-      default: 0
+      type: Date,
+      required: false
     },
     loginAttempts: {
       type: Number,

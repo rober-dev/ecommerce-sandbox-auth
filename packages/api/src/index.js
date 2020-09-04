@@ -11,9 +11,9 @@ const { ApolloServer } = require('apollo-server-express');
 const { ApolloGateway, RemoteGraphQLDataSource } = require('@apollo/gateway');
 
 // Custom libs
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
-const ipHelper = require('@minimal-ecommerce-sandbox/common/src/helpers/ip-helper');
-const i18nextSetup = require('@minimal-ecommerce-sandbox/api-common/src/i18n/i18next-setup');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
+const ipHelper = require('@ecommerce-sandbox-auth/common/src/helpers/ip-helper');
+const i18nextSetup = require('@ecommerce-sandbox-auth/api-common/src/i18n/i18next-setup');
 
 // Helpers
 const apolloErrorFormatter = require('../helpers/apollo-error-formatter');

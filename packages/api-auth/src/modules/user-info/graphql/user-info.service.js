@@ -3,14 +3,14 @@ const {
   addNewUserInfoSchema,
   updateUserInfoSchema,
   deleteUserInfoSchema
-} = require('@minimal-ecommerce-sandbox/shared/src/modules/auth/yup/user-info');
+} = require('@ecommerce-sandbox-auth/shared/src/modules/auth/yup/user-info');
 const {
   formatYupErrors
-} = require('@minimal-ecommerce-sandbox/shared/src/common/utils');
+} = require('@ecommerce-sandbox-auth/shared/src/common/utils');
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
-const throwApolloError = require('@minimal-ecommerce-sandbox/api-common/src/helpers/throw-apollo-error');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
+const throwApolloError = require('@ecommerce-sandbox-auth/api-common/src/helpers/throw-apollo-error');
 
 module.exports.validateAddNewUserInfoFormat = async (lng, input, method) => {
   try {

@@ -2,7 +2,7 @@
 const { ApolloError } = require('apollo-server-express');
 
 // Logger
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 const {
   validateUpdateUserInfoFormat,

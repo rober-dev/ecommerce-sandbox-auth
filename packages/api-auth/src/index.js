@@ -9,11 +9,11 @@ const path = require('path');
 require('dotenv').config();
 
 // Custom libs
-const setupLogger = require('@minimal-ecommerce-sandbox/common/src/logger/setup');
-const i18nextSetup = require('@minimal-ecommerce-sandbox/api-common/src/i18n/i18next-setup');
+const setupLogger = require('@ecommerce-sandbox-auth/common/src/logger/setup');
+const i18nextSetup = require('@ecommerce-sandbox-auth/api-common/src/i18n/i18next-setup');
 
 // Logger
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 const { PORT, API_NAME, FALLBACK_LANGUAGE, NODE_ENV } = process.env;
 
@@ -39,13 +39,13 @@ const run = async () => {
       const lng =
         req.headers && req.headers.lng ? req.headers.lng : FALLBACK_LANGUAGE;
 
-      const { organizationId, storeId } = req.headers;
+      const { organization_id, store_id } = req.headers;
       return {
         req,
         res,
         lng,
-        organizationId,
-        storeId,
+        organizationId: organization_id,
+        storeId: store_id,
         models,
         t: req.t
       };

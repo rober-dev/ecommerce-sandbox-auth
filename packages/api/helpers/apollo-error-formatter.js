@@ -1,8 +1,8 @@
 // Vendor libs
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
 
 // Get environment variables
 require('dotenv').config();

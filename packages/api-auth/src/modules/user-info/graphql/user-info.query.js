@@ -1,5 +1,5 @@
 // Vendor libs
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 const getAllUsersInfo = async (parent, args, ctx) => {
   try {

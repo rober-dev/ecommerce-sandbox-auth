@@ -1,11 +1,11 @@
 // Custom libs
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
-const throwApolloError = require('@minimal-ecommerce-sandbox/api-common/src/helpers/throw-apollo-error');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
+const throwApolloError = require('@ecommerce-sandbox-auth/api-common/src/helpers/throw-apollo-error');
 
 // Logger
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 const {
   validateAddNewUserFormat,
@@ -13,11 +13,21 @@ const {
   validateDeleteUserFormat,
   validateRepeatedUserEmail,
   validateRepeatedUserUsername,
-  validateRepeatedUserStoreId
-} = require('./user.service');
+  validateRepeatedUserStoreId,
+  validateRegisterUserFormat,
+  checkRepeatedUserEmail,
+  checkRepeatedUserUsername,
+  checkPasswordConfirmation,
+  createUser
+} = require('../user.service');
+
+const {
+  createAccessToken,
+  createRefreshToken
+} = require('../../../utils/token-helper');
 
 // Mutations
-const addNewUser = async (parent, { input }, { lng, models, t }) => {
+module.exports.addNewUser = async (parent, { input }, { lng, models, t }) => {
   // Validate user format
   await validateAddNewUserFormat(lng, input, 'addNewUser');
 
@@ -53,7 +63,7 @@ const addNewUser = async (parent, { input }, { lng, models, t }) => {
   }
 };
 
-const updateUser = async (parent, { input }, { lng, models, t }) => {
+module.exports.updateUser = async (parent, { input }, { lng, models, t }) => {
   // Validate format
   await validateUpdateUserFormat(lng, input, 'updateUser');
 
@@ -85,7 +95,7 @@ const updateUser = async (parent, { input }, { lng, models, t }) => {
   }
 };
 
-const deleteUser = async (parent, { id }, { lng, models }) => {
+module.exports.deleteUser = async (parent, { id }, { lng, models }) => {
   // Validate format
   await validateDeleteUserFormat(lng, { id }, 'deleteUser');
 
@@ -103,8 +113,61 @@ const deleteUser = async (parent, { id }, { lng, models }) => {
   }
 };
 
-module.exports = {
-  addNewUser,
-  updateUser,
-  deleteUser
+module.exports.registerUser = async (
+  parent,
+  { input },
+  { lng, t, models, organizationId, storeId }
+) => {
+  /* BUSINESS LOGIN:
+  -------------------
+  1- Validate user data
+  2- Check user email is not repeated
+  3- Check user username is not repeated
+  4- Save user in Database
+  5- Generate access and refresh tokens
+  6- Return tokens
+  */
+
+  // Get parameters
+  const { username, email, password, passwordConfirmation } = input;
+
+  // Validate format
+  await validateRegisterUserFormat(
+    lng,
+    { username, email, password, passwordConfirmation },
+    'registerUser'
+  );
+
+  // Check repeated user email
+  await checkRepeatedUserEmail(models, { organizationId, storeId }, t, email);
+
+  // Check repeated user username
+  await checkRepeatedUserUsername(
+    models,
+    { organizationId, storeId },
+    t,
+    username
+  );
+
+  // Check repeated user username
+  checkPasswordConfirmation(t, password, passwordConfirmation);
+
+  // Save user
+  const user = await createUser({ organizationId, storeId, t }, models, {
+    email,
+    username,
+    password
+  });
+
+  // Send registration email
+  // TODO: await userService.sendRegistrationEmail();
+
+  // Generate JWTs
+  const accessToken = createAccessToken(user);
+  const refreshToken = createRefreshToken(user);
+
+  return {
+    accessToken,
+    refreshToken
+  };
 };

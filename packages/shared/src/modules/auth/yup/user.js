@@ -36,3 +36,15 @@ module.exports.deleteUserSchema = lng => {
     id: Yup.string().required().matches(regexp.objectId)
   });
 };
+
+module.exports.registerUserSchema = lng => {
+  // Set yup locales
+  setLocale(lng);
+
+  return Yup.object().shape({
+    username: Yup.string().required().min(4).max(255),
+    email: Yup.string().required().email(),
+    password: Yup.string().required().min(5),
+    passwordConfirmation: Yup.string().required().min(5)
+  });
+};

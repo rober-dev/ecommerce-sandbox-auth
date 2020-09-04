@@ -1,11 +1,11 @@
 // Custom libs
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
-const throwApolloError = require('@minimal-ecommerce-sandbox/api-common/src/helpers/throw-apollo-error');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
+const throwApolloError = require('@ecommerce-sandbox-auth/api-common/src/helpers/throw-apollo-error');
 
 // Logger
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 const {
   validateAddNewOrganizationFormat,

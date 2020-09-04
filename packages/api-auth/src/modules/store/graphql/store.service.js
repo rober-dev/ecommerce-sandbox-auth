@@ -2,14 +2,14 @@ const {
   addNewStoreSchema,
   updateStoreSchema,
   deleteStoreSchema
-} = require('@minimal-ecommerce-sandbox/shared/src/modules/auth/yup/store');
+} = require('@ecommerce-sandbox-auth/shared/src/modules/auth/yup/store');
 const {
   formatYupErrors
-} = require('@minimal-ecommerce-sandbox/shared/src/common/utils');
+} = require('@ecommerce-sandbox-auth/shared/src/common/utils');
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
-const throwApolloError = require('@minimal-ecommerce-sandbox/api-common/src/helpers/throw-apollo-error');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
+const throwApolloError = require('@ecommerce-sandbox-auth/api-common/src/helpers/throw-apollo-error');
 
 const validateAddNewStoreFormat = async (lng, input, method) => {
   try {

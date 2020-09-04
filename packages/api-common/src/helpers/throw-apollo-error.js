@@ -9,8 +9,8 @@ const {
 // Custom libs
 const {
   GRAPHQL_ERROR
-} = require('@minimal-ecommerce-sandbox/shared/src/common/enums');
-const logger = require('@minimal-ecommerce-sandbox/common/src/logger');
+} = require('@ecommerce-sandbox-auth/shared/src/common/enums');
+const logger = require('@ecommerce-sandbox-auth/common/src/logger');
 
 module.exports = (type, method, msg, data, errors) => {
   let message = '';

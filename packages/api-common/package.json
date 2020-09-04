@@ -1,5 +1,5 @@
 {
-  "name": "@minimal-ecommerce-sandbox/api-common",
+  "name": "@ecommerce-sandbox-auth/api-common",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -16,8 +16,8 @@
     "start": "node ./src/index.js --production"
   },
   "dependencies": {
-    "@minimal-ecommerce-sandbox/common": "^0.0.0",
-    "@minimal-ecommerce-sandbox/shared": "^0.0.0",
+    "@ecommerce-sandbox-auth/common": "^0.0.0",
+    "@ecommerce-sandbox-auth/shared": "^0.0.0",
     "apollo-server-express": "^2.16.1",
     "bson": "^4.1.0",
     "dotenv": "^8.2.0",

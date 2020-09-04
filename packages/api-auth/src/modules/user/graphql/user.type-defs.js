@@ -37,6 +37,18 @@ module.exports = gql`
     roles: [ROLE!]!
   }
 
+  input RegisterUserInput {
+    username: String!
+    email: String!
+    password: String!
+    passwordConfirmation: String!
+  }
+
+  type RegisterUserResponse {
+    accessToken: String!
+    refreshToken: String!
+  }
+
   type UsersPaged {
     docs: [User!]!
     hasNextPage: Int
@@ -66,5 +78,6 @@ module.exports = gql`
     addNewUser(input: AddNewUserInput!): User!
     updateUser(input: UpdateUserInput!): User!
     deleteUser(id: ID!): Boolean!
+    registerUser(input: RegisterUserInput!): RegisterUserResponse!
   }
 `;
