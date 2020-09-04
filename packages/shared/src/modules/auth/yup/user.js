@@ -48,3 +48,14 @@ module.exports.registerUserSchema = lng => {
     passwordConfirmation: Yup.string().required().min(5)
   });
 };
+
+module.exports.logInSchema = lng => {
+  // Set yup locales
+  setLocale(lng);
+
+  return Yup.object().shape({
+    email: Yup.string().required().email(),
+    password: Yup.string().required().min(5),
+    rememberMe: Yup.boolean().required()
+  });
+};

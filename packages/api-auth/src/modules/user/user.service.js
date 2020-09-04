@@ -1,9 +1,14 @@
+/* eslint-disable no-param-reassign */
+// Vendor libs
+const moment = require('moment');
+
 // Custom libs
 const {
   addNewUserSchema,
   updateUserSchema,
   deleteUserSchema,
-  registerUserSchema
+  registerUserSchema,
+  logInSchema
 } = require('@ecommerce-sandbox-auth/shared/src/modules/auth/yup/user');
 const {
   formatYupErrors
@@ -109,6 +114,22 @@ module.exports.validateRegisterUserFormat = async (lng, input, method) => {
   }
 };
 
+module.exports.validateLogInFormat = async (lng, input, method) => {
+  try {
+    // Validate input format
+    await logInSchema(lng).validate(input, { abortEarly: false });
+  } catch (err) {
+    const errors = formatYupErrors(err);
+    throwApolloError(
+      GRAPHQL_ERROR.BAD_USER_INPUT,
+      method,
+      'Invalid login format',
+      input,
+      errors
+    );
+  }
+};
+
 // ---------------------------------------------
 
 module.exports.checkRepeatedUserEmail = async (
@@ -123,9 +144,9 @@ module.exports.checkRepeatedUserEmail = async (
       GRAPHQL_ERROR.INVALID_OPERATION,
       'checkRepeatedUserEmail',
       t('common:repeatedItemWithProp', {
-        a: t('aF'),
+        a: t('aM'),
         item: t('auth:user'),
-        prop: t('email'),
+        prop: t('auth:email'),
         value: email
       }),
       { email, organizationId, storeId }
@@ -146,9 +167,9 @@ module.exports.checkRepeatedUserUsername = async (
       GRAPHQL_ERROR.INVALID_OPERATION,
       'checkRepeatedUserUsername',
       t('common:repeatedItemWithProp', {
-        a: t('aF'),
+        a: t('aM'),
         item: t('auth:user'),
-        prop: t('username'),
+        prop: t('auth:username'),
         value: username
       }),
       { username, organizationId, storeId }
@@ -209,4 +230,34 @@ module.exports.createUser = async (
       { entity: t('auth:user') }
     );
   }
+};
+
+module.exports.comparePassword = (salt, hash, password) => {
+  const passwordHashed = encryptHelper.hashPassword(salt, password);
+  return passwordHashed === hash;
+};
+
+module.exports.addInvalidLoginAttempt = async user => {
+  // Add invalida attempt
+  let invalidAttempts = user.loginAttempts || 0;
+  invalidAttempts += 1;
+
+  // Set user lock until date if invalid attempts reach the limit
+  const { MAX_INVALID_LOGIN_ATTEMPTS, USER_LOCK_HOURS } = process.env;
+  if (invalidAttempts >= MAX_INVALID_LOGIN_ATTEMPTS) {
+    user.lockUntil = moment().add(USER_LOCK_HOURS, 'hours');
+    user.invalidAttempts = 0;
+  } else {
+    user.loginAttempts = invalidAttempts;
+  }
+
+  await user.save();
+};
+
+module.exports.loginSuccessfully = async user => {
+  user.lockUntil = null;
+  user.loginAttempts = 0;
+  user.lastLogin = new Date();
+
+  await user.save();
 };

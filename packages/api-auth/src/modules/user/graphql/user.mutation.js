@@ -1,3 +1,6 @@
+// Vendor libs
+const moment = require('moment');
+
 // Custom libs
 const {
   GRAPHQL_ERROR
@@ -15,10 +18,14 @@ const {
   validateRepeatedUserUsername,
   validateRepeatedUserStoreId,
   validateRegisterUserFormat,
+  validateLogInFormat,
   checkRepeatedUserEmail,
   checkRepeatedUserUsername,
   checkPasswordConfirmation,
-  createUser
+  createUser,
+  comparePassword,
+  addInvalidLoginAttempt,
+  loginSuccessfully
 } = require('../user.service');
 
 const {
@@ -163,6 +170,75 @@ module.exports.registerUser = async (
   // TODO: await userService.sendRegistrationEmail();
 
   // Generate JWTs
+  const accessToken = createAccessToken(user);
+  const refreshToken = createRefreshToken(user);
+
+  return {
+    accessToken,
+    refreshToken
+  };
+};
+
+module.exports.logIn = async (
+  parent,
+  { input },
+  { lng, t, models, organizationId, storeId }
+) => {
+  /* BUSINESS LOGIN:
+  -------------------
+  1- Validate user data
+  2- Get user by email, organization and store
+  3- Check user exists, and it's not locked
+  4- Check user password is valid
+  5- Save login attempt (success or fail)
+  6- Return access token (or error)
+  */
+
+  // Get args
+  const { email, password, rememberMe } = input;
+  const { User } = models;
+
+  // Validate format
+  await validateLogInFormat(lng, { email, password, rememberMe }, 'logIn');
+
+  // Get user
+  const user = await User.findOne({ organizationId, storeId, email });
+  if (!user) {
+    return throwApolloError(
+      GRAPHQL_ERROR.FORBIDDEN,
+      'logIn',
+      t('auth:InvalidLoginData')
+    );
+  }
+
+  // Check user data
+  if (user.lockUntil && moment(user.lockUntil) > new Date()) {
+    return throwApolloError(
+      GRAPHQL_ERROR.FORBIDDEN,
+      'logIn',
+      t('auth:UserIsTemporarilyLocked', { email })
+    );
+  }
+
+  // TODO: Check confirmation email
+
+  // Compare password
+  const passwordMatch = comparePassword(user.salt, user.hash, password);
+  if (!passwordMatch) {
+    // Password is INVALID
+    addInvalidLoginAttempt(user);
+
+    return throwApolloError(
+      GRAPHQL_ERROR.FORBIDDEN,
+      'logIn',
+      t('auth:InvalidLoginData')
+    );
+  }
+
+  // Password is VALID
+  await loginSuccessfully();
+
+  // Get tokens
   const accessToken = createAccessToken(user);
   const refreshToken = createRefreshToken(user);
 

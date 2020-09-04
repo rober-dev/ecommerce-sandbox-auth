@@ -1,4 +1,10 @@
 {
-  "hello": "hola",
-  "errorSavingEntity": "Error guardando {{entity}}"
+  "hello": "Hola",
+  "aF": "una",
+  "aM": "un",
+  "theF": "la",
+  "theM": "el",
+  "name": "nombre",
+  "repeatedItemWithProp": "Ya existe {{a}} {{item}} con {{prop}} \"{{value}}\"",
+  "itemWithIdDoesNotExists": "{{the}} {{item}} '{{id}}' no existe"
 }

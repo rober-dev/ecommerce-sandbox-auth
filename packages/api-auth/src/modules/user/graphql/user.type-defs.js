@@ -44,6 +44,12 @@ module.exports = gql`
     passwordConfirmation: String!
   }
 
+  input LogInInput {
+    email: String!
+    password: String!
+    rememberMe: Boolean
+  }
+
   type RegisterUserResponse {
     accessToken: String!
     refreshToken: String!
@@ -79,5 +85,6 @@ module.exports = gql`
     updateUser(input: UpdateUserInput!): User!
     deleteUser(id: ID!): Boolean!
     registerUser(input: RegisterUserInput!): RegisterUserResponse!
+    logIn(input: LogInInput!): RegisterUserResponse!
   }
 `;

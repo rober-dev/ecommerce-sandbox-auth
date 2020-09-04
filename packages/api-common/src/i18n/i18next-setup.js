@@ -13,7 +13,7 @@ module.exports = async (
   debug = false
 ) => {
   // Get always 'common' and 'yup' namespaces for default
-  let _ns = ['common', 'yup'];
+  let _ns = ['common', 'yup', 'auth'];
 
   if (ns && ns.length > 0) {
     _ns = _ns.concat(ns);

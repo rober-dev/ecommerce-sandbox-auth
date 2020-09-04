@@ -19,5 +19,5 @@ module.exports.hashPassword = (salt, password) => {
     iteractions: 1000
   });
 
-  return hash;
+  return hash.toString();
 };
