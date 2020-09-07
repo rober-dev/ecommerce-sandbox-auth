@@ -259,5 +259,5 @@ module.exports.loginSuccessfully = async user => {
   user.loginAttempts = 0;
   user.lastLogin = new Date();
 
-  await user.save();
+  return user.save();
 };
