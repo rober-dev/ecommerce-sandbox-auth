@@ -3,7 +3,7 @@ version: "3"
 services:
   api:
     container_name: api
-    image: product-categories-api
+    image: ecommerce-sandbox-auth-api
     build:
       context: ./
       dockerfile: ./packages/api/Dockerfile.dev
@@ -27,12 +27,12 @@ services:
       - ./packages/api:/usr/src/app/packages/api
       - ./node_modules:/usr/src/app/node_modules
     networks:
-      - product-categories-network
+      - ecommerce-sandbox-auth-network
     restart: unless-stopped
 
   api-auth:
     container_name: api-auth
-    image: product-categories-api-auth
+    image: ecommerce-sandbox-auth-api-auth
     build:
       context: ./
       dockerfile: ./packages/api-auth/Dockerfile.dev
@@ -45,7 +45,7 @@ services:
       NODE_ENV: development
       LOG_LEVEL: error
       FALLBACK_LANGUAGE: en
-      MONGODB_URL: mongodb://db:27017/product-categories
+      MONGODB_URL: mongodb://db:27017/ecommerce-sandbox-auth
       WAIT_HOSTS: db:27017
     volumes:
       - ./locales:/usr/src/app/locales
@@ -57,12 +57,12 @@ services:
     depends_on:
       - db
     networks:
-      - product-categories-network
+      - ecommerce-sandbox-auth-network
     restart: unless-stopped
 
   api-catalog:
     container_name: api-catalog
-    image: product-categories-api-catalog
+    image: ecommerce-sandbox-auth-api-catalog
     build:
       context: ./
       dockerfile: ./packages/api-catalog/Dockerfile.dev
@@ -75,7 +75,7 @@ services:
       NODE_ENV: development
       LOG_LEVEL: error
       FALLBACK_LANGUAGE: en
-      MONGODB_URL: mongodb://db:27017/product-categories
+      MONGODB_URL: mongodb://db:27017/ecommerce-sandbox-auth
       WAIT_HOSTS: db:27017
     volumes:
       - ./locales:/usr/src/app/locales
@@ -87,7 +87,7 @@ services:
     depends_on:
       - db
     networks:
-      - product-categories-network
+      - ecommerce-sandbox-auth-network
     restart: unless-stopped
 
   db:
@@ -100,8 +100,8 @@ services:
       - 28017:27017
       - 28018:27018
     networks:
-      - product-categories-network
+      - ecommerce-sandbox-auth-network
 
 networks:
-  product-categories-network:
+  ecommerce-sandbox-auth-network:
     driver: bridge
