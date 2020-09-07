@@ -2,10 +2,7 @@
 const { _ } = require('lodash');
 
 // Custom libs
-// const { userResolver } = require('./modules/user');
+const { brandResolver } = require('./modules/brand');
 
 // Exportation
-module.exports = _.merge(
-  {}
-  // userResolver
-);
+module.exports = _.merge({}, brandResolver);

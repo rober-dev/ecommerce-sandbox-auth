@@ -10,13 +10,17 @@
     "test:watch": "NODE_ENV=test jest __tests__ --watch",
     "test:watch:debug": "NODE_ENV=test jest __tests__ --watch --runInBand",
     "test:coverage": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4 --collect-coverage",
-    "dev": "next src",
+    "dev": "NODE_OPTIONS='--inspect' next src",
     "build": "rm -rf dist && next build",
-    "start": "NODE_ENV=production node src/index.js"
+    "start": "NODE_ENV=production next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.1.4",
+    "@ecommerce-sandbox-auth/shared": "^0.0.0",
     "@material-ui/core": "^4.11.0",
     "clsx": "^1.1.1",
+    "graphql": "^15.3.0",
+    "graphql-tag": "^2.11.0",
     "next": "^9.5.3",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
