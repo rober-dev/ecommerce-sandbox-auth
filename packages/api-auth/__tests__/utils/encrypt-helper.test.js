@@ -14,13 +14,6 @@ describe('EncryptHelper tests', () => {
       iteractions: 1000
     });
 
-    console.log({
-      p,
-      salt: salt.toString(),
-      hash: hash.toString(),
-      passwordHashed: passwordHashed.toString()
-    });
-
     expect(salt).not.toBeNull();
     expect(hash).not.toBeNull();
     expect(hash.toString()).toEqual(passwordHashed.toString());

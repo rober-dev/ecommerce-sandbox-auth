@@ -19,7 +19,7 @@
     "docker:run:api-geo": "docker run --name api-cms -d -p 4003:4003 ecommerce-sandbox-api-geo",
     "test": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4",
     "test:watch": "NODE_ENV=test jest --watch --colors __tests__ ",
-    "test:watch:debug": "NODE_ENV=test jest --watch --runInBand  --colors __tests__",
+    "test:watch:debug": "NODE_ENV=test jest --watch --runInBand --passWithNoTests  --colors __tests__",
     "test:coverage": "NODE_ENV=test jest __tests__  --colors --passWithNoTests --maxWorkers=4 --collect-coverage"
   },
   "keywords": [],
