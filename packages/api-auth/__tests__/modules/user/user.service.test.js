@@ -286,4 +286,43 @@ describe('UserService methods', () => {
     expect(user.loginAttempts).not.toEqual(initialLoginAttemps);
     expect(modifiedUser.loginAttempts).not.toEqual(initialLoginAttemps);
   });
+
+  it('CheckPasswordConfirmation should return true with same passwords', () => {
+    const password = 'passwordoriginal';
+    const passwordConfirmation = 'passwordoriginal';
+
+    const confirmation = userService.checkPasswordConfirmation(
+      t,
+      password,
+      passwordConfirmation
+    );
+
+    expect(confirmation).toBeTruthy();
+  });
+
+  it('CheckPasswordConfirmation should throw error with different passwords', () => {
+    const password = 'passwordoriginal';
+    const passwordConfirmation = 'password';
+
+    expect(() =>
+      userService.checkPasswordConfirmation(t, password, passwordConfirmation)
+    ).toThrow();
+  });
+
+  it('LoginSuccessfully should reset lockUntil, loginAttempts and lastLogin of user', async () => {
+    // Insert dummy data
+    const data = await testDB.models.User.insertMany(initialUsers);
+
+    const user = data[0];
+    const fecha = new Date();
+    user.loginAttempts = 4;
+    user.lastLogin = fecha;
+    user.lockUntil = '3 hours';
+
+    const result = await userService.loginSuccessfully(user);
+
+    expect(result.loginAttempts).toEqual(0);
+    expect(result.lockUntil).toBeNull();
+    expect(result.lastLogin.getTime()).toBeGreaterThan(fecha.getTime());
+  });
 });
