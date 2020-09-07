@@ -253,4 +253,37 @@ describe('UserService methods', () => {
     expect(savedUser.salt).not.toBeNull();
     expect(savedUser.hash).not.toBeNull();
   });
+
+  it('ComparePassword should returns true', async () => {
+    const { salt, hash } = initialUsers[0];
+    const password = '123ABC';
+    const comparedPassword = userService.comparePassword(salt, hash, password);
+
+    expect(comparedPassword).toBeFalsy();
+  });
+
+  it('ComparePassword should returns false', async () => {
+    const { salt, hash } = initialUsers[0];
+    const password = '12345';
+    const comparedPassword = userService.comparePassword(salt, hash, password);
+
+    expect(comparedPassword).toBeFalsy();
+  });
+
+  it('AddInvalidLoginAttepmt should add a logginAttempt', async () => {
+    // Insert dummy data
+    await testDB.models.User.insertMany(initialUsers);
+
+    const { _id } = initialUsers[0];
+
+    const user = await testDB.models.User.findById(_id);
+    const initialLoginAttemps = user.loginAttempts;
+
+    await userService.addInvalidLoginAttempt(user);
+
+    const modifiedUser = await testDB.models.User.findById(_id);
+
+    expect(user.loginAttempts).not.toEqual(initialLoginAttemps);
+    expect(modifiedUser.loginAttempts).not.toEqual(initialLoginAttemps);
+  });
 });
