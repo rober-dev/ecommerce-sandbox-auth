@@ -1,0 +1,33 @@
+{
+  "name": "@ecommerce-sandbox-auth/web-admin",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next src -p 3001",
+    "build": "rm -rf dist && next build",
+    "start": "NODE_ENV=production next start -p 3001"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.4",
+    "@apollo/react-ssr": "^3.1.4",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link": "^1.2.13",
+    "apollo-link-context": "^1.0.19",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-http": "^1.5.16",
+    "apollo-link-token-refresh": "^0.2.7",
+    "apollo-utilities": "^1.3.3",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "graphql-tag": "^2.11.0",
+    "helmet": "^4.1.0",
+    "jwt-decode": "^2.2.0",
+    "next": "^9.5.3",
+    "next-compose-plugins": "^2.2.0",
+    "next-images": "^1.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

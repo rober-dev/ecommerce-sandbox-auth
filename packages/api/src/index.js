@@ -18,6 +18,9 @@ const i18nextSetup = require('@ecommerce-sandbox-auth/api-common/src/i18n/i18nex
 // Helpers
 const apolloErrorFormatter = require('../helpers/apollo-error-formatter');
 
+// Custom routes
+const authRoutes = require('./routes/auth.routes');
+
 // Load environment variables
 dotenv.config();
 
@@ -25,6 +28,8 @@ dotenv.config();
 const PORT = parseInt(process.env.PORT || 4000, 10);
 const { API_NAME } = process.env || 'API';
 const { NODE_ENV } = process.env || 'development';
+const WEB_PWA = process.env.WEB_PWA || 'http://localhost:3000';
+const WEB_ADMIN = process.env.WEB_ADMIN || 'http://localhost:3001';
 const API_AUTH = process.env.API_AUTH || 'http://localhost:4001';
 const API_CATALOG = process.env.API_CATALOG || 'http://localhost:4010';
 const { FALLBACK_LANGUAGE, IPINFO_TOKEN } = process.env;
@@ -132,7 +137,8 @@ const run = async () => {
 
   // Setup cors
   const corsOptions = {
-    credentials: true
+    credentials: true,
+    origin: [WEB_PWA, WEB_ADMIN]
   };
   app.use(cors(corsOptions));
 
@@ -140,6 +146,8 @@ const run = async () => {
   app.get('/healthcheck', (req, res) => {
     return res.json('ok');
   });
+
+  app.post('/auth/refresh-token', authRoutes.refreshTokenHandler);
 
   // Apply Express middleware to Apollo
   apolloServer.applyMiddleware({ app, cors: corsOptions });
