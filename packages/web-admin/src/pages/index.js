@@ -1,10 +1,14 @@
 // Vendor libs
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
+// Custom libs
+import { withTranslation } from '../lib/i18n';
+
 // Component definition
-const HomePage = () => {
+const HomePage = ({ t }) => {
   // GraphQL Query
   const GET_ALL_BRANDS = gql`
     query GET_ALL_BRANDS {
@@ -20,7 +24,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Home page</h1>
+      <h1>{t('hello')}</h1>
       {data && data.getAllBrands && (
         <ul>
           {data.getAllBrands.map(brand => (
@@ -32,5 +36,14 @@ const HomePage = () => {
   );
 };
 
+// Initial props
+HomePage.getInitialProps = async () => ({
+  namespacesRequired: ['common', 'auth']
+});
+
+HomePage.propTypes = {
+  t: PropTypes.func.isRequired
+};
+
 // Exportation
-export default HomePage;
+export default withTranslation('common')(HomePage);

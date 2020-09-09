@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 // Custom libs
 import { ApolloProvider } from '@apollo/react-hooks';
 import { withApollo } from '../lib/apollo';
+import { appWithTranslation } from '../lib/i18n';
 
 // Component definition
 const BaseApp = ({ Component, pageProps, apolloClient }) => {
@@ -27,4 +28,4 @@ const BaseApp = ({ Component, pageProps, apolloClient }) => {
   );
 };
 // Exportation
-export default withApollo({ ssr: true })(BaseApp);
+export default withApollo({ ssr: true })(appWithTranslation(BaseApp));
