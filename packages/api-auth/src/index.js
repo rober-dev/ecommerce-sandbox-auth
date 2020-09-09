@@ -42,13 +42,15 @@ const run = async () => {
       const lng =
         req.headers && req.headers.lng ? req.headers.lng : FALLBACK_LANGUAGE;
 
-      const { organization_id, store_id } = req.headers;
+      const organizationId = req.headers['organization-id'];
+      const storeId = req.headers['store-id'];
+
       return {
         req,
         res,
         lng,
-        organizationId: organization_id,
-        storeId: store_id,
+        organizationId,
+        storeId,
         models,
         t: req.t
       };
