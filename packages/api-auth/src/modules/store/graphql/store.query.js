@@ -7,6 +7,9 @@ const {
 const getAllStores = async (parent, args, ctx) => {
   try {
     const { Store } = ctx.models;
+    const { t } = ctx;
+
+    console.log(t('hello'));
 
     const result = await Store.find();
     return result;

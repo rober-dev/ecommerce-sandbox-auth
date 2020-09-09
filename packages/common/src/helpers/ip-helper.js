@@ -3,6 +3,8 @@
 const ipInfo = require('ipinfo');
 const logger = require('../logger');
 
+const { NODE_ENV } = process.env;
+
 module.exports.getLocation = async (ip, IPINFO_TOKEN) => {
   // Check IPINFO_TOKEN
   if (!IPINFO_TOKEN) {
@@ -19,7 +21,7 @@ module.exports.getLocation = async (ip, IPINFO_TOKEN) => {
   }
 
   // Avoid request location from local ips
-  if (ip === '::1' || ip === '127.0.0.1' || ip === '0.0.0.0') {
+  if (NODE_ENV !== 'production') {
     return {
       ip,
       city: 'Vigo',

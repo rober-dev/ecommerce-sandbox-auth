@@ -1,0 +1,101 @@
+[
+  {
+    "_id": "5f3cc736121dbd84e68bf753",
+    "domain": "krackonline.com",
+    "name": "Krackonline",
+    "organizationId": "5f29138fcf14e700ac976db8",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b5447933d6aeccd4db03",
+    "domain": "nike.com",
+    "name": "Nike",
+    "organizationId": "5f29138bcf14e700ac976db7",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44be6bc7f540beb7a52903",
+    "domain": "adidas.com",
+    "name": "Adidas",
+    "organizationId": "5f291393cf14e700ac976db9",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44be7100dfe2259cc06e6a",
+    "domain": "weekday.com",
+    "name": "Weekday",
+    "organizationId": "5f291393cf14e700ac976db0",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44be761a303fe1a79246ad",
+    "domain": "hermes.com",
+    "name": "Hermes",
+    "organizationId": "5f291393cf14e700ac976db1",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b5f1b2d957c2aabcf76e",
+    "domain": "champsports.com",
+    "name": "Champs Sports",
+    "organizationId": "5f291393cf14e700ac976db2",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b610f24c13b982bb9c13",
+    "domain": "vans.com",
+    "name": "Vans",
+    "organizationId": "5f291393cf14e700ac976db3",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b61615b1efc0a72eb5e6",
+    "domain": "zara.com",
+    "name": "Zara",
+    "organizationId": "5f291393cf14e700ac976db4",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b61bdf928ab4a1462a27",
+    "domain": "gucci.com",
+    "name": "Gucci",
+    "organizationId": "5f291393cf14e700ac976db5",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b623d3d831c4ec779b7c",
+    "domain": "kenzo.com",
+    "name": "Kenzo",
+    "organizationId": "5f291393cf14e700ac976db6",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f44b62aac4f028c73a705b7",
+    "domain": "calvinklein.com",
+    "name": "Calvin Klein",
+    "organizationId": "5f291393cf14e700ac976db7",
+    "createdAt": "2020-08-04T07:51:39.116Z",
+    "updatedAt": "2020-08-04T07:51:39.116Z",
+    "__v": 0
+  }
+]

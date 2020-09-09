@@ -25,6 +25,9 @@ const resolvers = require('./resolvers');
 const typeDefs = require('./type-defs');
 const models = require('./models');
 
+// Seed routes
+const seedRouter = require('./seeder/router');
+
 const run = async () => {
   // Apollo server setup
   const apolloServer = new ApolloServer({
@@ -62,6 +65,9 @@ const run = async () => {
 
   // Healthcheck
   app.get('/healthcheck', (req, res) => res.json('ok'));
+
+  // Seed Router
+  app.use('/seed', seedRouter);
 
   // Register logger on app init
   setupLogger(app, __dirname);

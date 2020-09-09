@@ -1,0 +1,101 @@
+[
+  {
+    "_id": "5f27c8c59b9681af4ac274f2",
+    "userId": "5f2403a14ef5b5552c0b125f",
+    "firstName": "Pablo",
+    "lastName": "BarrosCordo",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f3",
+    "userId": "5f27c8c59b9681af4ac274f1",
+    "firstName": "Carlos",
+    "lastName": "VilasAlvarez",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f4",
+    "userId": "5f27c9419b9681af4ac27517",
+    "firstName": "Andres",
+    "lastName": "PerezVillar",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f5",
+    "userId": "6f27c9419b9681af4ac27123",
+    "firstName": "Rober",
+    "lastName": "Fraga",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f6",
+    "userId": "6f27c9419b9681af4ac27234",
+    "firstName": "Luis",
+    "lastName": "Domarco",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f7",
+    "userId": "6f27c9419b9681af4ac27124",
+    "firstName": "Moises",
+    "lastName": "MateoGallego",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f9",
+    "userId": "6f27c9419b9681af4ac27125",
+    "firstName": "Eduardo",
+    "lastName": "BarbosaTarrio",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274f0",
+    "userId": "6f27c9419b9681af4ac27126",
+    "firstName": "Jorge",
+    "lastName": "TeixeiraCrespo",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274fa",
+    "userId": "6f27c9419b9681af4ac27127",
+    "firstName": "Guillermo",
+    "lastName": "LopezCarrero",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274fb",
+    "userId": "6f27c9419b9681af4ac27128",
+    "firstName": "Javier",
+    "lastName": "FerreñoCostas",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "5f27c8c59b9681af4ac274fc",
+    "userId": "6f27c9419b9681af4ac27129",
+    "firstName": "Martin",
+    "lastName": "Linares",
+    "createdAt": "2020-07-31T11:42:25.809Z",
+    "updatedAt": "2020-07-31T11:42:25.809Z",
+    "__v": 0
+  }
+]
