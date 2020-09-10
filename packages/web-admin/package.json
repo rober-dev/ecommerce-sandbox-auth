@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next src -p 3001",
+    "dev": "next -p 3001",
     "build": "rm -rf dist && next build",
     "start": "NODE_ENV=production next start -p 3001"
   },
