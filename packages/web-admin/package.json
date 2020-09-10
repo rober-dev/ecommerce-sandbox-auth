@@ -11,6 +11,8 @@
   "dependencies": {
     "@apollo/react-hooks": "^3.1.4",
     "@apollo/react-ssr": "^3.1.4",
+    "@ecommerce-sandbox-auth/common": "^0.0.0",
+    "@ecommerce-sandbox-auth/shared": "^0.0.0",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.13",

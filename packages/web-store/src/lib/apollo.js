@@ -18,6 +18,7 @@ let API_URL;
 if (typeof window === 'undefined') {
   API_URL = process.env.API_URL;
 }
+
 /**
  * Installs the Apollo Client on NextPageContext
  * or NextAppContext. Useful if you want to use apolloClient

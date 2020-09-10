@@ -1,0 +1,10 @@
+{
+  "hello": "Hi there",
+  "aF": "a",
+  "aM": "a",
+  "theF": "the",
+  "theM": "the",
+  "name": "name",
+  "repeatedItemWithProp": "Already exists {{a}} {{item}} with {{prop}} \"{{value}}\"",
+  "itemWithIdDoesNotExists": "{{the}} {{item}} '{{id}}' does not exist"
+}

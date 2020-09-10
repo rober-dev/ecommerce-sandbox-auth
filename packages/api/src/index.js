@@ -55,9 +55,16 @@ class AuthenticatedDataSource extends RemoteGraphQLDataSource {
       request.http.headers.set('location-hostname', context.location.hostname);
     }
 
+    // Set current user
+    request.http.headers.set('user-id', context.userId);
+    request.http.headers.set('user-email', context.userEmail);
+    request.http.headers.set('user-username', context.userName);
+    request.http.headers.set('user-roles', context.userRoles);
+
     // Set request organization and store
-    request.http.headers.set('organizationId', context.organizationId);
-    request.http.headers.set('storeId', context.storeId);
+    request.http.headers.set('organization-id', context.organizationId);
+    request.http.headers.set('store-id', context.storeId);
+    request.http.headers.set('request-mode', context.storeId);
   }
 }
 
@@ -82,8 +89,18 @@ const run = async () => {
   // Load APIs
   const { schema, executor } = await apolloGateway.load();
 
+  // User data
   let user;
+  let userId;
+  let userEmail;
+  let userName;
+  let userRoles;
+
+  // Location info
   let loc;
+
+  // Request source
+  let requestMode;
   let organizationId;
   let storeId;
 
@@ -98,25 +115,39 @@ const run = async () => {
       // Get parameters from request headers
       const lng = req.headers.lng || FALLBACK_LANGUAGE;
 
-      user = null;
-
       // Get request location
       loc = await ipHelper.getLocation(
         req.connection.remoteAddress,
         IPINFO_TOKEN
       );
 
-      // TODO: replace this by jwt decrypted data
-      organizationId = '5f29138bcf14e700ac976db7';
-      storeId = '5f3cc736121dbd84e68bf753';
+      // Get organizationId and StoreId from Headers (WebStore) or JWT(Admin)
+      if (req.headers['organization-id'] && req.headers['store-id']) {
+        // Web Store
+        requestMode = 'store';
+        organizationId = req.headers['organization-id'];
+        storeId = req.headers['store-id'];
+      } else {
+        // Admin
+        requestMode = 'admin';
+      }
 
       return {
         req,
         res,
+        // Language
         lng,
+        // Origin
         organizationId,
         storeId,
-        loc: loc || null
+        requestMode,
+        // Location data
+        loc: loc || null,
+        // User data
+        userId,
+        userEmail,
+        userName,
+        userRoles
       };
     },
     formatError: err => {

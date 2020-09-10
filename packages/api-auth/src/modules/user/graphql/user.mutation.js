@@ -236,7 +236,7 @@ module.exports.logIn = async (
   }
 
   // Password is VALID
-  await loginSuccessfully();
+  await loginSuccessfully(user);
 
   // Get tokens
   const accessToken = createAccessToken(user);
